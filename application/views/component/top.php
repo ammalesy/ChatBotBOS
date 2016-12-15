@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Survey BOS</title>
+    <title>Bot BOS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/bootstrap.min.css" rel="stylesheet">
@@ -53,18 +53,7 @@
           overflow-y: auto;
         }
 
-        <?php if($page=="PreviewSurvey" || $page=="ProjectManagement" || $page=="AssignProject") { ?>
         @media(min-width:768px) {
-            #wrapper {
-               
-            }
-
-            #page-wrapper {
-                padding: 10px;
-            }
-        }
-        <?php }else{ ?>
-            @media(min-width:768px) {
             #wrapper {
                 padding-left: 225px; 
             }
@@ -73,7 +62,6 @@
                 padding: 10px;
             }
         }
-        <?php } ?>
 
     </style>
 
@@ -138,109 +126,42 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo APP_PATH; ?>PreviewSurvey">Survey Admin</a>
+                <a class="navbar-brand" href="<?php echo APP_PATH; ?>home">Bot Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <?php
-                        $ci =& get_instance(); 
-                        $admin = $ci->get_session(); 
-                    ?>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;<?php echo $admin->a_name; ?><b class="caret"></b></a>
+                    
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;adc<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-<!--                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
-                        <li class="divider"></li> -->
-                        <?php if(check_permission('ProjectManagement',"rw") || check_permission('ProjectManagement',"r")){ ?>
-                        <li>
-                            <a href="<?php echo APP_PATH.'ProjectManagement'; ?>"><i class="fa fa-fw fa-star"></i>Project management</a>
-                        </li>
-                        <?php } ?>
-                        <?php if(check_permission('UserManagement',"rw") || check_permission('UserManagement',"r")){ ?>
-                        <li>
-                            <a href="<?php echo APP_PATH.'AssignProject'; ?>"><i class="fa fa-fw fa-plus"></i>Assign Project</a>
-                        </li>
-                        <?php } ?>
-                        <?php if(check_permission('RoleManagement',"rw") || check_permission('RoleManagement',"r")){ ?>
-                        <li>
-                            <a href="<?php echo APP_PATH.'UserManagement'; ?>"><i class="fa fa-fw fa-user"></i>User management</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo APP_PATH.'RoleManagement'; ?>"><i class="fa fa-fw fa-flag"></i>Role management</a>
-                        </li>
-                        <?php
-                            }
-                        ?>
-                        <li>
-                            <a href="<?php echo APP_PATH.'Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Logout</a>
-                        </li>
+                       
                     </ul>
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php if($page != "PreviewSurvey" && $page != "ProjectManagement" && $page != "AssignProject") { ?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 
-                	<li> 
-                	<a href="#" style="background-color:#000000; color:#8b8b8b; :hover {background-color: #FFFFFF;}">
-                		<?php
-                			$ci =& get_instance();
-                			$projectName = $ci->session->userdata('project_name_selected');
-                		?>
-                		<i class="fa fa-fw fa-home"></i><?php echo $projectName; ?>
-                	</a>
-                	</li>
-
-                    <li <?php echo ($page == "Dashboard")?"class=active":""; ?>>
-                        <a href="<?php echo APP_PATH; ?>Dashboard"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
+                    <li> 
+                    <a href="<?php echo APP_PATH; ?>home" style="">
+                        
+                        <i class="fa fa-fw fa-home"></i>Keyword
+                    </a>
                     </li>
-                    <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('SurveyResult',"rw") || check_permission('SurveyResult',"r")) { ?>
-                        <li <?php echo ($page == "SurveyResult")?"class=active":""; ?>>
-                            <a href="<?php echo APP_PATH; ?>SurveyResult"><i class="fa fa-fw fa-th-list"></i>Survey result</a>
-                        </li>
-                    <?php } ?>
-                     <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('QuestionManagement',"rw") || check_permission('QuestionManagement',"r")) { ?>
-                        <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
-                            <a href="<?php echo APP_PATH; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
-                        </li>
-                    <?php } ?>
-                     <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('SurveyManagement',"rw") || check_permission('SurveyManagement',"r")) { ?>
-                        <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
-                            <a href="<?php echo APP_PATH; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
-                        </li>
-                    <?php } ?>
-                    <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('RoleManagement',"rw") || check_permission('RoleManagement',"r")) { ?>
-                        <li <?php echo ($page == "RoleManagement")?"class=active":""; ?>>
-                            <a href="<?php echo APP_PATH; ?>RoleManagement"><i class="fa fa-fw fa-flag"></i>Role Management</a>
-                        </li>
-                        <li <?php echo ($page == "UserManagement")?"class=active":""; ?>>
-                            <a href="<?php echo APP_PATH; ?>UserManagement"><i class="fa fa-fw fa-user"></i>User Management</a>
-                        </li>
-                    <?php } ?>
-                    <!-- CHECK PERMISISON -->
+
+                   
                     
                 </ul>
 
             </div>
-            <?php } ?>
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper" > <?php $ci->session_invalid(); ?>
+        <div id="page-wrapper" >
         <script>
             /* center modal */
             function centerModals($element) {
